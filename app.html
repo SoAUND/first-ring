@@ -5,21 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>First Ring workspace</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=Outfit:wght@380;560&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+  <style>
+    :root { --bg:#10140f; --ink:#f3f1e7; --muted:#b7b4a6; --line:#2a3126; --accent:#d6f25c; --card:#171d16; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Outfit,sans-serif; }
+    .top, .grid { width:min(1040px, calc(100% - 28px)); margin:0 auto; }
+    .top { display:flex; justify-content:space-between; padding:18px 0; }
+    h1, h2 { font-family:Fraunces,serif; letter-spacing:-0.03em; }
+    h1 { font-size:2.2rem; margin:0 0 8px; }
+    .muted { color:var(--muted); }
+    .grid { display:grid; gap:18px; padding-bottom:40px; }
+    form, .thread, .leads { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px; }
+    label { display:grid; gap:6px; margin-bottom:10px; color:var(--muted); font-size:0.92rem; }
+    input, button { font:inherit; border-radius:10px; padding:12px; }
+    input { background:#10140f; color:var(--ink); border:1px solid var(--line); }
+    button { background:var(--accent); color:#17200c; border:0; font-weight:560; }
+    .thread { min-height:220px; display:grid; gap:8px; align-content:start; margin-bottom:10px; }
+    .bubble { max-width:85%; padding:10px 12px; border-radius:12px; }
+    .agent { background:#242b20; }
+    .caller { margin-left:auto; background:#2c3318; }
+    .row { display:flex; gap:8px; }
+    .row input { flex:1; }
+    .lead { padding:8px 0; border-bottom:1px solid var(--line); }
+    @media (min-width:800px) { .grid { grid-template-columns:1fr 1fr; align-items:start; } }
+  </style>
 </head>
 <body>
-  <header class="top">
-    <strong>First Ring</strong>
-    <span id="status">No workspace yet</span>
-  </header>
+  <header class="top"><strong>First Ring</strong><span id="status">No workspace yet</span></header>
   <main class="grid">
     <section>
       <h1>Build the agent from the business.</h1>
-      <p class="muted">This is the core loop: facts in, agent out, leads saved. Phone connection comes after a Retell number exists.</p>
+      <p class="muted">Facts in, agent out, lead saved. A live phone number still needs Retell.</p>
       <form id="profile">
         <label>Business <input name="business" required placeholder="Northline Plumbing"></label>
         <label>What it does <input name="services" required placeholder="repairs, installs, emergencies"></label>
-        <label>Hours <input name="hours" required placeholder="Mon–Fri 8am–6pm"></label>
+        <label>Hours <input name="hours" required placeholder="Mon-Fri 8am-6pm"></label>
         <label>Area <input name="area" placeholder="any city or region"></label>
         <label>Price it may say <input name="price" placeholder="diagnostic visit $89"></label>
         <label>Where texts go <input name="notify" type="email" placeholder="owner@email.com"></label>
@@ -37,6 +57,96 @@
       <div id="leads" class="leads"></div>
     </section>
   </main>
-  <script src="app.js"></script>
+  <script>
+    const key = "firstring-workspace";
+    const profileForm = document.querySelector("#profile");
+    const chatForm = document.querySelector("#chat");
+    const thread = document.querySelector("#thread");
+    const leadsEl = document.querySelector("#leads");
+    const status = document.querySelector("#status");
+    let draft = {};
+    function load() { return JSON.parse(localStorage.getItem(key) || '{"profile":null,"leads":[],"history":[]}'); }
+    function save(data) { localStorage.setItem(key, JSON.stringify(data)); }
+    function say(role, text) {
+      const el = document.createElement("div");
+      el.className = "bubble " + role;
+      el.textContent = text;
+      thread.appendChild(el);
+    }
+    function renderLeads() {
+      const data = load();
+      leadsEl.innerHTML = "";
+      if (!data.leads.length) { leadsEl.textContent = "No leads yet."; return; }
+      data.leads.forEach((lead) => {
+        const el = document.createElement("div");
+        el.className = "lead";
+        el.textContent = lead.name + " \u00b7 " + lead.need + " \u00b7 " + lead.when;
+        leadsEl.appendChild(el);
+      });
+    }
+    function render() {
+      const data = load();
+      thread.innerHTML = "";
+      if (!data.profile) {
+        status.textContent = "No workspace yet";
+        say("agent", "Save a business first. Then talk to the agent.");
+        leadsEl.textContent = "No leads yet.";
+        return;
+      }
+      status.textContent = data.profile.business;
+      Object.entries(data.profile).forEach(([name, value]) => {
+        const field = profileForm.elements[name];
+        if (field) field.value = value;
+      });
+      say("agent", "You are through to " + data.profile.business + ". What do you need?");
+      data.history.forEach((item) => say(item.role, item.text));
+      renderLeads();
+    }
+    function reply(message) {
+      const data = load();
+      const profile = data.profile;
+      const text = message.toLowerCase();
+      draft.need = draft.need || message;
+      if (!profile) return "Save the business profile first.";
+      if (/price|cost|how much/.test(text)) return profile.price ? "The figure I can give is " + profile.price + "." : "I cannot quote a price. I can book a visit.";
+      if (/emergency|leak|gas|flood|no heat|no cool/.test(text)) return "That needs a person. I am marking it urgent and taking your name and callback.";
+      if (/book|schedule|come out|appointment|thursday|friday|tomorrow/.test(text)) return "I can hold Thursday at 9am or Friday at 1pm. Which name should I put on it?";
+      if (!draft.name && /my name is|i am|i'm/.test(text)) {
+        draft.name = message.replace(/.*(?:my name is|i am|i'm)\s+/i, "").trim();
+        return "Thanks " + draft.name + ". What number should the owner call?";
+      }
+      const phone = message.match(/\d[\d\s\-]{6,}/);
+      if (phone && draft.name) {
+        data.leads.unshift({ name: draft.name, need: draft.need, when: "Thursday 9am", phone: phone[0] });
+        save(data);
+        draft = {};
+        renderLeads();
+        return "Booked Thursday at 9am. A text would go to " + (profile.notify || "the owner") + ".";
+      }
+      return profile.business + " handles " + profile.services + " during " + profile.hours + (profile.area ? " in " + profile.area : "") + ". I can book a visit or take a message.";
+    }
+    profileForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = load();
+      data.profile = Object.fromEntries(new FormData(profileForm).entries());
+      data.history = [];
+      save(data);
+      draft = {};
+      render();
+    });
+    chatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const message = new FormData(chatForm).get("message");
+      const data = load();
+      if (!data.profile) { say("agent", "Save the business profile first."); return; }
+      const answer = reply(message);
+      data.history.push({ role: "caller", text: message }, { role: "agent", text: answer });
+      save(data);
+      say("caller", message);
+      say("agent", answer);
+      chatForm.reset();
+    });
+    render();
+  </script>
 </body>
 </html>
