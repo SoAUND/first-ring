@@ -31,8 +31,8 @@
     .btn, button[type=submit], #replay { background:var(--accent); color:#17200c; text-decoration:none; padding:12px 16px; border-radius:999px; font-weight:640; }
     .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
     .fine { color:var(--muted); font-size:0.9rem; }
-    .call, .cards article, form { background:var(--card); border:1px solid var(--line); border-radius:18px; }
-    .call { margin:28px 0 8px; padding:18px; }
+    .call, .cards article, form, .note { background:var(--card); border:1px solid var(--line); border-radius:18px; }
+    .call, .note { margin:28px 0 8px; padding:18px; }
     .call-top { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:0.9rem; }
     .dot { width:8px; height:8px; border-radius:50%; background:#ef6b4a; }
     .transcript { min-height:180px; display:grid; gap:10px; padding:16px 0; }
@@ -62,31 +62,31 @@
     <nav>
       <a href="#how">How it works</a>
       <a href="#price">Price</a>
-      <a class="nav-cta" href="#book">Book a demo</a>
+      <a class="nav-cta" href="#book">Request a call</a>
     </nav>
   </header>
   <main id="top">
     <section class="hero">
       <p class="eyebrow">After close · any service business</p>
       <h1>The call you missed already booked with someone else.</h1>
-      <p class="lede">First Ring answers when the shop is closed, gets the name, address, and problem, and texts the owner before the caller hangs up. Anywhere the business takes calls.</p>
+      <p class="lede">First Ring answers when the business is closed, gets the name, area, and problem, and texts the owner before the caller hangs up.</p>
       <div class="actions">
-        <a class="btn" href="#book">Hear a sample call</a>
+        <a class="btn" href="#sample">Play the sample script</a>
         <a class="btn ghost" href="#price">See the price</a>
       </div>
-      <p class="fine">14-day pilot on the after-hours line only. No new phone system.</p>
+      <p class="fine">A live phone demo is not on this page yet. The box below is a script of the call a client would hear.</p>
     </section>
-    <section class="call" aria-label="Sample call">
-      <div class="call-top"><span class="dot"></span><span>Incoming · 7:41 pm</span></div>
+    <section class="call" id="sample" aria-label="Sample script">
+      <div class="call-top"><span class="dot"></span><span>Sample script · not a live call</span></div>
       <div id="transcript" class="transcript"></div>
-      <button id="replay" type="button">Play sample</button>
+      <button id="replay" type="button">Replay script</button>
     </section>
     <section id="how">
-      <h2>Three steps. The existing number stays.</h2>
+      <h2>What a client does after they ask for a demo</h2>
       <ol class="steps">
-        <li><strong>Forward after hours</strong><span>The daytime line rings the business. After close, it forwards to First Ring.</span></li>
-        <li><strong>The line takes the job</strong><span>Name, callback, area, what they need, and a time that is actually open.</span></li>
-        <li><strong>The owner gets a text</strong><span>Booked slot or a complete message. A person gets the call if the caller asks for one.</span></li>
+        <li><strong>1. They leave a name and number</strong><span>That request should land in your inbox. Right now the form only opens a mail draft. It does not send itself.</span></li>
+        <li><strong>2. You call them back</strong><span>You play a real phone demo, trained on their hours and services, and they call that number themselves.</span></li>
+        <li><strong>3. They forward after hours</strong><span>Their daytime line stays the same. After close, it forwards to the agent. You text them each booked job.</span></li>
       </ol>
     </section>
     <section id="price">
@@ -98,7 +98,8 @@
       </div>
     </section>
     <section id="book">
-      <h2>Put a demo on the line this week.</h2>
+      <h2>Request a callback.</h2>
+      <p class="lede">This opens a draft in your mail app. It is not connected to an inbox yet.</p>
       <form id="lead">
         <label>Name <input name="name" required autocomplete="name"></label>
         <label>Business <input name="business" required></label>
@@ -106,14 +107,14 @@
         <label>Trade
           <select name="trade"><option>Home services</option><option>Health</option><option>Professional</option><option>Retail</option><option>Other</option></select>
         </label>
-        <button type="submit">Request the demo</button>
+        <button type="submit">Open mail draft</button>
         <p id="form-note" class="fine"></p>
       </form>
     </section>
   </main>
   <footer>
     <span>First Ring</span>
-    <span>Works with any service business. Working name until you rename it.</span>
+    <span>Sample script only until a phone number is connected.</span>
   </footer>
   <script>
     const lines = [
@@ -145,7 +146,7 @@
       event.preventDefault();
       const data = new FormData(event.target);
       const body = ["Demo request", "Name: " + data.get("name"), "Business: " + data.get("business"), "Phone: " + data.get("phone"), "Trade: " + data.get("trade")].join("\n");
-      document.querySelector("#form-note").textContent = "Draft opened in mail. Replace the address in the page before this goes live.";
+      document.querySelector("#form-note").textContent = "A draft opened to hello@example.com. That address is a placeholder. Nothing was delivered.";
       window.location.href = "mailto:hello@example.com?subject=" + encodeURIComponent("First Ring demo") + "&body=" + encodeURIComponent(body);
     });
   </script>
