@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First Ring workspace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=Outfit:wght@380;560&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="top">
+    <strong>First Ring</strong>
+    <span id="status">No workspace yet</span>
+  </header>
+  <main class="grid">
+    <section>
+      <h1>Build the agent from the business.</h1>
+      <p class="muted">This is the core loop: facts in, agent out, leads saved. Phone connection comes after a Retell number exists.</p>
+      <form id="profile">
+        <label>Business <input name="business" required placeholder="Northline Plumbing"></label>
+        <label>What it does <input name="services" required placeholder="repairs, installs, emergencies"></label>
+        <label>Hours <input name="hours" required placeholder="Mon–Fri 8am–6pm"></label>
+        <label>Area <input name="area" placeholder="any city or region"></label>
+        <label>Price it may say <input name="price" placeholder="diagnostic visit $89"></label>
+        <label>Where texts go <input name="notify" type="email" placeholder="owner@email.com"></label>
+        <button type="submit">Save and build agent</button>
+      </form>
+    </section>
+    <section>
+      <h2>Test the agent</h2>
+      <div id="thread" class="thread"></div>
+      <form id="chat" class="row">
+        <input name="message" placeholder="My unit stopped working" required>
+        <button type="submit">Send</button>
+      </form>
+      <h2>Leads</h2>
+      <div id="leads" class="leads"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

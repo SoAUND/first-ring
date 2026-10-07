@@ -3,152 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First Ring — After-hours answering for service businesses</title>
-  <meta name="description" content="An after-hours line that answers, takes the job, and texts the owner. For any service business, anywhere.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@380;500;640&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg:#10140f; --ink:#f3f1e7; --muted:#b7b4a6; --line:#2a3126; --accent:#d6f25c; --card:#171d16; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--bg); color:var(--ink); font-family:Outfit,sans-serif; font-weight:380; line-height:1.45; }
-    a { color:inherit; }
-    .nav, main, footer { width:min(920px, calc(100% - 32px)); margin-inline:auto; }
-    .nav { display:flex; justify-content:space-between; align-items:center; padding:22px 0; }
-    .logo { font-weight:640; text-decoration:none; letter-spacing:-0.03em; }
-    nav { display:flex; gap:18px; align-items:center; }
-    nav a { text-decoration:none; color:var(--muted); font-size:0.95rem; }
-    .nav-cta { color:#17200c !important; background:var(--accent); padding:8px 12px; border-radius:999px; }
-    .hero { padding:28px 0 12px; }
-    .eyebrow { color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; font-size:0.78rem; }
-    h1, h2 { font-family:Fraunces,serif; font-weight:560; letter-spacing:-0.03em; line-height:1.05; }
-    h1 { font-size:clamp(2.4rem, 7vw, 4.6rem); margin:8px 0 16px; }
-    h2 { font-size:clamp(1.8rem, 4vw, 2.6rem); margin:0 0 18px; }
-    .lede { font-size:1.15rem; max-width:38rem; color:var(--muted); }
-    .actions { display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 8px; }
-    .btn, button { border:0; cursor:pointer; font:inherit; }
-    .btn, button[type=submit], #replay { background:var(--accent); color:#17200c; text-decoration:none; padding:12px 16px; border-radius:999px; font-weight:640; }
-    .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
-    .fine { color:var(--muted); font-size:0.9rem; }
-    .call, .cards article, form, .note { background:var(--card); border:1px solid var(--line); border-radius:18px; }
-    .call, .note { margin:28px 0 8px; padding:18px; }
-    .call-top { display:flex; gap:8px; align-items:center; color:var(--muted); font-size:0.9rem; }
-    .dot { width:8px; height:8px; border-radius:50%; background:#ef6b4a; }
-    .transcript { min-height:180px; display:grid; gap:10px; padding:16px 0; }
-    .bubble { max-width:80%; padding:10px 12px; border-radius:14px; }
-    .bubble.agent { background:#242b20; }
-    .bubble.caller { margin-left:auto; background:#2c3318; }
-    section { padding:48px 0; }
-    .steps { list-style:none; padding:0; display:grid; gap:14px; }
-    .steps li { display:grid; gap:4px; padding-bottom:14px; border-bottom:1px solid var(--line); }
-    .steps span { color:var(--muted); }
-    .cards { display:grid; gap:12px; }
-    .cards article { padding:18px; }
-    .featured { outline:1px solid var(--accent); }
-    .kicker { margin:0; color:var(--accent); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; }
-    .amount { font-family:Fraunces,serif; font-size:2.2rem; margin:6px 0; }
-    form { padding:18px; display:grid; gap:12px; }
-    label { display:grid; gap:6px; color:var(--muted); font-size:0.92rem; }
-    input, select { background:#10140f; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px; font:inherit; }
-    footer { display:flex; justify-content:space-between; gap:12px; color:var(--muted); padding:10px 0 32px; font-size:0.9rem; }
-    @media (min-width:760px) { .cards { grid-template-columns:repeat(3, 1fr); } }
-    @media (max-width:640px) { nav a:not(.nav-cta) { display:none; } footer { flex-direction:column; } }
-  </style>
+  <title>First Ring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=Outfit:wght@380;560&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <header class="nav">
-    <a class="logo" href="#top">First Ring</a>
-    <nav>
-      <a href="#how">How it works</a>
-      <a href="#price">Price</a>
-      <a class="nav-cta" href="#book">Request a call</a>
-    </nav>
-  </header>
-  <main id="top">
-    <section class="hero">
-      <p class="eyebrow">After close · any service business</p>
+  <main class="grid">
+    <section>
+      <p class="muted">AFTER CLOSE · ANY SERVICE BUSINESS</p>
       <h1>The call you missed already booked with someone else.</h1>
-      <p class="lede">First Ring answers when the business is closed, gets the name, area, and problem, and texts the owner before the caller hangs up.</p>
-      <div class="actions">
-        <a class="btn" href="#sample">Play the sample script</a>
-        <a class="btn ghost" href="#price">See the price</a>
-      </div>
-      <p class="fine">A live phone demo is not on this page yet. The box below is a script of the call a client would hear.</p>
-    </section>
-    <section class="call" id="sample" aria-label="Sample script">
-      <div class="call-top"><span class="dot"></span><span>Sample script · not a live call</span></div>
-      <div id="transcript" class="transcript"></div>
-      <button id="replay" type="button">Replay script</button>
-    </section>
-    <section id="how">
-      <h2>What a client does after they ask for a demo</h2>
-      <ol class="steps">
-        <li><strong>1. They leave a name and number</strong><span>That request should land in your inbox. Right now the form only opens a mail draft. It does not send itself.</span></li>
-        <li><strong>2. You call them back</strong><span>You play a real phone demo, trained on their hours and services, and they call that number themselves.</span></li>
-        <li><strong>3. They forward after hours</strong><span>Their daytime line stays the same. After close, it forwards to the agent. You text them each booked job.</span></li>
-      </ol>
-    </section>
-    <section id="price">
-      <h2>Priced like a recovered job, not a software seat.</h2>
-      <div class="cards">
-        <article><p class="kicker">Pilot</p><p class="amount">14 days</p><p>After-hours forwarding only. If it does not catch a real lead, turn it off.</p></article>
-        <article class="featured"><p class="kicker">Setup</p><p class="amount">$997</p><p>Agent trained on services, hours, and what it is allowed to say. Number, text alerts, and a booking calendar.</p></article>
-        <article><p class="kicker">Monthly</p><p class="amount">$397</p><p>Line stays on, prompt gets updated when services change, and a call log goes out each month.</p></article>
-      </div>
-    </section>
-    <section id="book">
-      <h2>Request a callback.</h2>
-      <p class="lede">This opens a draft in your mail app. It is not connected to an inbox yet.</p>
-      <form id="lead">
-        <label>Name <input name="name" required autocomplete="name"></label>
-        <label>Business <input name="business" required></label>
-        <label>Phone <input name="phone" type="tel" required autocomplete="tel"></label>
-        <label>Trade
-          <select name="trade"><option>Home services</option><option>Health</option><option>Professional</option><option>Retail</option><option>Other</option></select>
-        </label>
-        <button type="submit">Open mail draft</button>
-        <p id="form-note" class="fine"></p>
-      </form>
+      <p>First Ring takes the business facts, answers after close, books a time, and saves the lead.</p>
+      <p><a href="app.html"><button type="button">Open the workspace</button></a></p>
+      <p class="muted">The workspace builds and tests the agent. A live phone number still needs a Retell account.</p>
     </section>
   </main>
-  <footer>
-    <span>First Ring</span>
-    <span>Sample script only until a phone number is connected.</span>
-  </footer>
-  <script>
-    const lines = [
-      ["caller", "Hi, the unit stopped working. I need someone out here."],
-      ["agent", "I can get that on the schedule. What is the name and area?"],
-      ["caller", "Maria Alvarez."],
-      ["agent", "I have Thursday at 9am or Friday at 1pm. Which works?"],
-      ["caller", "Thursday at 9."],
-      ["agent", "Booked. A text is going to the owner now with this number. Someone will confirm in the morning."]
-    ];
-    const transcript = document.querySelector("#transcript");
-    const replay = document.querySelector("#replay");
-    function play() {
-      transcript.innerHTML = "";
-      replay.disabled = true;
-      lines.forEach((line, i) => {
-        setTimeout(() => {
-          const el = document.createElement("div");
-          el.className = "bubble " + line[0];
-          el.textContent = line[1];
-          transcript.appendChild(el);
-          if (i === lines.length - 1) replay.disabled = false;
-        }, 700 * i);
-      });
-    }
-    replay.addEventListener("click", play);
-    play();
-    document.querySelector("#lead").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(event.target);
-      const body = ["Demo request", "Name: " + data.get("name"), "Business: " + data.get("business"), "Phone: " + data.get("phone"), "Trade: " + data.get("trade")].join("\n");
-      document.querySelector("#form-note").textContent = "A draft opened to hello@example.com. That address is a placeholder. Nothing was delivered.";
-      window.location.href = "mailto:hello@example.com?subject=" + encodeURIComponent("First Ring demo") + "&body=" + encodeURIComponent(body);
-    });
-  </script>
 </body>
 </html>
