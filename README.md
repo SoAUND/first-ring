@@ -1,24 +1,26 @@
 # First Ring
 
-Sales site and starter kit for an Orlando after-hours AI receptionist.
+Sales site and starter kit for an after-hours AI receptionist.
 
 This is the customer-facing site, not the phone agent itself. The agent still gets built in Retell and pointed at a phone number. The prompt is in `agent/prompt.md`.
 
+No city, region, or niche is assumed. Swap the business facts per client.
+
 ## Live site
 
-GitHub Pages is not turned on by the API used to create this repo. Enable it once:
+GitHub Pages is not turned on. The connected app cannot enable it. Until it is on, use:
 
-1. Open https://github.com/SoAUND/first-ring/settings/pages
-2. Source: Deploy from a branch
-3. Branch: `main` / `/ (root)`
-4. Save
+https://htmlpreview.github.io/?https://github.com/SoAUND/first-ring/blob/main/index.html
 
-The site will be at https://soaund.github.io/first-ring/
+To publish `https://soaund.github.io/first-ring/`:
+
+1. Sign in as SoAUND in a browser, not the GitHub app.
+2. Open the repo, then Settings, then Pages.
+3. Source: Deploy from a branch. Branch: `main`. Folder: `/ (root)`.
+4. Save and wait a minute.
 
 ## What is in here
 
-- `index.html` — one-page offer for local service businesses
-- `agent/prompt.md` — Retell system prompt for an HVAC demo
+- `index.html` — one-page offer for service businesses
+- `agent/prompt.md` — Retell system prompt
 - `agent/outreach.md` — first-call script
-
-Swap the business name, phone, and email in `index.html` before sending the link to an owner.

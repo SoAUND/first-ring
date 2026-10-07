@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>First Ring — After-hours answering for Orlando service businesses</title>
-  <meta name="description" content="An after-hours line that answers, takes the job, and texts the owner. Built for Orlando HVAC, dental, med spa, and roofing companies.">
+  <title>First Ring — After-hours answering for service businesses</title>
+  <meta name="description" content="An after-hours line that answers, takes the job, and texts the owner. For any service business, anywhere.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@380;500;640&display=swap" rel="stylesheet">
@@ -67,9 +67,9 @@
   </header>
   <main id="top">
     <section class="hero">
-      <p class="eyebrow">Orlando · after 6pm</p>
+      <p class="eyebrow">After close · any service business</p>
       <h1>The call you missed already booked with someone else.</h1>
-      <p class="lede">First Ring answers when the shop is closed, gets the name, address, and problem, and texts you before the caller hangs up.</p>
+      <p class="lede">First Ring answers when the shop is closed, gets the name, address, and problem, and texts the owner before the caller hangs up. Anywhere the business takes calls.</p>
       <div class="actions">
         <a class="btn" href="#book">Hear a sample call</a>
         <a class="btn ghost" href="#price">See the price</a>
@@ -77,16 +77,16 @@
       <p class="fine">14-day pilot on the after-hours line only. No new phone system.</p>
     </section>
     <section class="call" aria-label="Sample call">
-      <div class="call-top"><span class="dot"></span><span>Incoming · 7:41 pm · 407</span></div>
+      <div class="call-top"><span class="dot"></span><span>Incoming · 7:41 pm</span></div>
       <div id="transcript" class="transcript"></div>
       <button id="replay" type="button">Play sample</button>
     </section>
     <section id="how">
       <h2>Three steps. The existing number stays.</h2>
       <ol class="steps">
-        <li><strong>Forward after hours</strong><span>The daytime line rings the shop. After close, it forwards to First Ring.</span></li>
-        <li><strong>The line takes the job</strong><span>Name, callback, zip, what is wrong, and a time that is actually open.</span></li>
-        <li><strong>You get a text</strong><span>Booked slot or a complete message. A person gets the call if the caller asks for one.</span></li>
+        <li><strong>Forward after hours</strong><span>The daytime line rings the business. After close, it forwards to First Ring.</span></li>
+        <li><strong>The line takes the job</strong><span>Name, callback, area, what they need, and a time that is actually open.</span></li>
+        <li><strong>The owner gets a text</strong><span>Booked slot or a complete message. A person gets the call if the caller asks for one.</span></li>
       </ol>
     </section>
     <section id="price">
@@ -104,7 +104,7 @@
         <label>Business <input name="business" required></label>
         <label>Phone <input name="phone" type="tel" required autocomplete="tel"></label>
         <label>Trade
-          <select name="trade"><option>HVAC</option><option>Dental</option><option>Med spa</option><option>Roofing</option><option>Other</option></select>
+          <select name="trade"><option>Home services</option><option>Health</option><option>Professional</option><option>Retail</option><option>Other</option></select>
         </label>
         <button type="submit">Request the demo</button>
         <p id="form-note" class="fine"></p>
@@ -112,14 +112,14 @@
     </section>
   </main>
   <footer>
-    <span>First Ring · Orlando</span>
-    <span>Working name. Swap it before the first client.</span>
+    <span>First Ring</span>
+    <span>Works with any service business. Working name until you rename it.</span>
   </footer>
   <script>
     const lines = [
-      ["caller", "Hi, my AC stopped cooling. It is about 86 in the house."],
-      ["agent", "Sorry to hear that. I can get a tech on the schedule. What is the name and zip?"],
-      ["caller", "Maria Alvarez, 32803."],
+      ["caller", "Hi, the unit stopped working. I need someone out here."],
+      ["agent", "I can get that on the schedule. What is the name and area?"],
+      ["caller", "Maria Alvarez."],
       ["agent", "I have Thursday at 9am or Friday at 1pm. Which works?"],
       ["caller", "Thursday at 9."],
       ["agent", "Booked. A text is going to the owner now with this number. Someone will confirm in the morning."]

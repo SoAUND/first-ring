@@ -1,8 +1,8 @@
 # First conversation
 
-Use this after calling a business after 6pm and getting no answer.
+Use this after calling a business after close and getting no answer. Works for any trade, in any country where you can reach the owner.
 
-"I called Tuesday at 7:40 and nobody picked up. That call is usually a job going to whoever answers first. I run an after-hours line that answers, takes the job details, and texts you. Here is a 60-second recording of what that sounds like. If it books anything in 14 days, we keep it on. If it doesn't, you turn it off."
+"I called after you were closed and nobody picked up. That call usually goes to whoever answers first. I run an after-hours line that answers, takes the job details, and texts you. Here is a 60-second recording of what that sounds like. If it books anything in 14 days, we keep it on. If it doesn't, you turn it off."
 
 Offer:
 
